@@ -4,7 +4,7 @@ const db = require("../../config/mongodb");
 const productController = {
   getAllProductsWithQuery: (req, res) => {
     const { name } = req.query;
-    db.collection("products")
+    db.collection("product")
       .find({ name: { $regex: name, $options: "i" } })
       .toArray()
       .then((result) => res.send(result))
@@ -13,7 +13,7 @@ const productController = {
 
   getDetailProduct: (req, res) => {
     const { id } = req.params;
-    db.collection("products")
+    db.collection("product")
       .findOne({ _id: ObjectId(id) })
       .then((result) => res.send(result))
       .catch((error) => res.send(error));
@@ -21,7 +21,7 @@ const productController = {
 
   insertProduct: (req, res) => {
     const { name, price, stock, status } = req.body;
-    db.collection("products")
+    db.collection("product")
       .insertOne({ name, price, stock, status })
       .then((result) =>
         res.send({
@@ -35,7 +35,7 @@ const productController = {
   updateProduct: (req, res) => {
     const { id } = req.params;
     const { name, price, stock, status } = req.body;
-    db.collection("products")
+    db.collection("product")
       .updateOne({ _id: ObjectId(id) }, { $set: { name, price, stock, status } })
       .then((result) =>
         res.send({
@@ -48,7 +48,7 @@ const productController = {
 
   deleteProduct: (req, res) => {
     const { id } = req.params;
-    db.collection("products")
+    db.collection("product")
       .deleteOne({ _id: ObjectId(id) })
       .then((result) =>
         res.send({

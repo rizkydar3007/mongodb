@@ -28,8 +28,8 @@ app.use((req, res, next) => {
   });
 });
 
-const { HOST, PORT } = process.env;
+// const { HOST, PORT } = process.env;
 
-app.listen(PORT, () => {
-  console.log(`${HOST}${PORT}`);
-});
+// app.listen(PORT, () => {
+//   console.log(`${HOST}${PORT}`);
+// });
